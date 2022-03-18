@@ -2,7 +2,7 @@
 
 == Agenda:
 
-Students following: 2 hours.
+Students following: 1 hour.
 
 . [5 min] Deploy RHSSO with PostgreSQL into Openshift
 . [5 min] Setup Realm, Roles and Users
@@ -11,10 +11,7 @@ Students following: 2 hours.
 . [10 min] Deploy frontend and backend applications into Openshift
 . [5 min] Register backend and frontend clients on RHSSO
 . [5 min] Explore application showing authentication and authorization
-. [5 min] OTP
-. [2 min] Login Screen features - Forgot Password, Sign in, etc...
-. [2 min] Templates 
-. [2 min] Social Login with Twitter
+
 
 == Pre-requirements
 
@@ -135,6 +132,13 @@ image::images/rhsso-client-setup-01.png[]
 ** Change Access Type to *bearer-only*
 
 image::images/rhsso-client-setup-02.png[]
+
+=== Demo App Client 
+
+* Client ID: *demo-app*
+* Root URL: *https://demo-app-security.apps.cluster-nbmmt.nbmmt.sandbox725.opentlc.com* (Adjust with your URL)
+
+image::images/rhsso-client-setup-03.png[]
 
 == Application setup
 
@@ -313,13 +317,6 @@ image::images/rhsso-deploy-app-09.png[]
 If you click on Login, you will see an error message *"Client not found"*.
 
 image::images/rhsso-deploy-app-10.png[]
-
-=== Demo App Client 
-
-* Client ID: *demo-app*
-* Root URL: *https://demo-app-security.apps.cluster-nbmmt.nbmmt.sandbox725.opentlc.com* (Adjust with your URL)
-
-image::images/rhsso-client-setup-03.png[]
 
 == Demo Navigation
 
