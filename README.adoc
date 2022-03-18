@@ -20,12 +20,14 @@ Students following: 2 hours.
 
 * Github Account
 * Quay.io Account (Optional)
-* Access to the Openshift environment
+* Access to the Openshift environment, choose one user here:
+
+ https://docs.google.com/document/d/1_SYnlRkd11gbqRhy01uCpqbvsxwVQAL-_FcdpdquF3k/edit?usp=sharing
 
 == SSO Setup 
 
 * Login in Openshift environment using the credential delivered on class
-    
+
 https://console-openshift-console.apps.cluster-nbmmt.nbmmt.sandbox725.opentlc.com
 
 * Click in create project on the initial page of openshift 
