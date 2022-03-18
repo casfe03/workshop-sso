@@ -57,7 +57,7 @@ app.use(keycloak.middleware({
 }));
 
 app.get('/public', function (req, res) {
-  res.json({message: 'public workshop'});
+  res.json({message: 'Change Here'});
 });
 
 app.get('/secured', keycloak.protect('realm:user'), function (req, res) {
