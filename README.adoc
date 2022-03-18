@@ -263,8 +263,16 @@ image::images/rhsso-deploy-app-03-1.png[]
 
 image::images/rhsso-deploy-app-03.png[]
 
+* Go to Project section than click in route
+
+image::images/rhsso-deploy-app-route.png[]
+
 * Create a route
-** Check *Secure route* 
+
+image::images/rhsso-deploy-app-route-1.png[]
+
+** Put the name secure-route-XX (Put here your ID), choose the service *demo-service* and Check *Secure route* 
+***
 
 image::images/rhsso-deploy-app-05.png[]
 
@@ -274,7 +282,7 @@ To do a quick test, access the route created with */public* in the end, you shou
 
 === Deploying the frontend application
 
-You will repeat the same process. However, in the environment variables, you must insert the SERVICE_URL too.
+You will repeat the same process to deploy the frontend application. However, in the environment variables, you must insert the SERVICE_URL too.
 
     SERVICE_URL=https://demo-service-securityXX.apps.redhatrj-bf20.openshiftworkshop.com
 
