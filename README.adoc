@@ -85,16 +85,16 @@ image::images/rhsso-role-setup-02.png[]
 image::images/rhsso-role-setup-03.png[]
 image::images/rhsso-role-setup-04.png[]
 
-* Add two users, first *john* with only *user* permission, after *john* with *user* and *admin* roles.
+* Add two users, first *Karina* with only *user* permission, after *Ramalho* with *user* and *admin* roles.
 ** Click on *Users* in the vertical left menu 
 ** Click on *Add user* 
 
 image::images/rhsso-user-setup-01.png[]
 
-*** Username: *john*
-*** Email: john@acme.com
-*** First Name: john 
-*** Last Name: doe
+*** Username: *Karina*
+*** Email: karina@acme.com
+*** First Name: Karina 
+*** Last Name: Ramalho
 *** Click on Save.
 
 image::images/rhsso-user-setup-02.png[]
