@@ -243,25 +243,25 @@ It reinforces the quality and the compromise of Red Hat with security, and conse
 
 === Deploying the backend application
 
-* Under *Add to Project* menu, select *Deploy Image*
+* Under *Add* menu, select *Container images*
 
 image::images/rhsso-deploy-app-01.png[]
 
-* Mark *Image Name* 
+* Mark *Image Name*
 
-    quay.io/your-user-here/demo-service
+    docker pull quay.io/casfe01/demo-service
 
 image::images/rhsso-deploy-app-02.png[]
 
-* On Environment Variables add (adapt to your values)
+* Go to Actions and edit your deployment On Environment Variables add (adapt to your values)
 
-    KEYCLOAK_URL=https://sso-securityXX.apps.redhatrj-bf20.openshiftworkshop.com/auth
+image::images/rhsso-deploy-app-03-1.png[]
+
+* In your deployment On Environment Variables add (adapt to your values)
+    
+    KEYCLOAK_URL=https://sso-securityXX.apps.cluster-nbmmt.nbmmt.sandbox725.opentlc.com/auth
 
 image::images/rhsso-deploy-app-03.png[]
-
-* If everything worked fine, you should see something like it
-
-image::images/rhsso-deploy-app-04.png[]
 
 * Create a route
 ** Check *Secure route* 
