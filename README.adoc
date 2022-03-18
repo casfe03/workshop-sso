@@ -161,7 +161,7 @@ image::images/quay-01.png[]
 
 image::images/quay-02.png[]
 
-**** Select *rhsso-workshop* as your repository
+**** Select *workshop-sso* as your repository
 
 image::images/quay-03.png[]
 
@@ -192,7 +192,7 @@ Demo-service is a NodeJS application.
 *** Select *Public* in Repository Visibility Option
 *** Select *Link go a Github Repository Push* 
 **** Select your user under Organization
-**** Select *rhsso-workshop* as your repository
+**** Select *workshop-sso* as your repository
 **** Select *Trigger for all branches and tags* as trigger option
 **** Select */demo-service/Dockerfile* as Dockerfile
 **** Select */demo-service* as Context
