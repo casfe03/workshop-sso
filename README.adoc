@@ -314,10 +314,6 @@ you should see the message printed.
 
 image::images/rhsso-deploy-app-09.png[]
 
-If you click on Login, you will see an error message *"Client not found"*.
-
-image::images/rhsso-deploy-app-10.png[]
-
 == Demo Navigation
 
 Quick recap, there are 3 endpoints. 
