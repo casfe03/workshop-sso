@@ -41,7 +41,7 @@ image::images/rhsso-setup-create-project.png[]
 
 image::images/rhsso-setup-add-all-services-catalog.png[]
 
-* In the Developer Catalog search for SSO and then click on SSO 7.4 (Ephemeral) to install a SSO 7.4 Ephemeral
+* In the Developer Catalog search for SSO and then click on SSO 7.3 (Ephemeral) to install a SSO 7.3 Ephemeral
 
 image::images/rhsso-setup-select-template.png[]
 
@@ -54,8 +54,8 @@ image::images/rhsso-setup-select-template.png[]
 
 image::images/rhsso-setup-provisioned.png[]
 
-* Access the Red Hat Single Sign-On provisioned service 
-** Click on the route URL
+* After service it has a dark blue border access the Red Hat Single Sign-On provisioned service,
+** Click on the Open URL bottom or On Route URL
 
 image::images/rhsso-access-01.png[]
 
@@ -65,7 +65,7 @@ image::images/rhsso-access-02.png[]
 
 ** Fill with the credentials used before
 *** user: *admin*
-*** password: *redhat*
+*** password: *workshop*
 
 image::images/rhsso-access-03.png[]
 
