@@ -61,11 +61,11 @@ app.get('/public', function (req, res) {
 });
 
 app.get('/secured', keycloak.protect('realm:user'), function (req, res) {
-  res.json({message: 'secured'});
+  res.json({message: 'user secured'});
 });
 
 app.get('/admin', keycloak.protect('realm:admin'), function (req, res) {
-  res.json({message: 'admin'});
+  res.json({message: 'admin secured'});
 });
 
 app.listen(8080, function () {
