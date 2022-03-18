@@ -137,9 +137,7 @@ The backend application exposes 3 services:
 
 To start, let's first fork the workshop repository to your git. 
 
-    https://github.com/hodrigohamalho/rhsso-workshop
-
-image::images/github-fork.png[]
+    https://github.com/casfe03/workshop-sso
 
 In the next steps, we will set up the application on Quay.io. It isn't mandatory since we could easily 
 deploy the project using Openshift S2I mechanism, but to show a different approach, we are suggesting to use 
