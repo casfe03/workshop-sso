@@ -121,6 +121,21 @@ image::images/rhsso-user-setup-08.png[]
 image::images/rhsso-user-setup-09.png[]
 image::images/rhsso-user-setup-10.png[]
 
+== Setup clients on RHSSO 
+
+=== Demo Service Client
+
+* On side menu, select *Clients*. Select *Add Client* and provide:
+** Client ID: *demo-service*
+
+** Root URL: *https://demo-service-security.apps.cluster-nbmmt.nbmmt.sandbox725.opentlc.com* (Adjust with your URL)
+
+image::images/rhsso-client-setup-01.png[]
+
+** Change Access Type to *bearer-only*
+
+image::images/rhsso-client-setup-02.png[]
+
 == Application setup
 
 On this workshop, we will start using a prevalent scenario. 
@@ -247,9 +262,9 @@ It reinforces the quality and the compromise of Red Hat with security, and conse
 
 image::images/rhsso-deploy-app-01.png[]
 
-* Mark *Image Name*
+* Mark *Image Name* and go to advanced options and dismark *Create a route to the Application*
 
-    docker pull quay.io/casfe01/demo-service
+    quay.io/casfe01/demo-service
 
 image::images/rhsso-deploy-app-02.png[]
 
@@ -271,20 +286,20 @@ image::images/rhsso-deploy-app-route.png[]
 
 image::images/rhsso-deploy-app-route-1.png[]
 
-** Put the name secure-route-XX (Put here your ID), choose the service *demo-service* and Check *Secure route* 
+** Put the name demo-service, choose the service *demo-service* and Check *Secure route* 
 ***
 
 image::images/rhsso-deploy-app-05.png[]
 
 To do a quick test, access the route created with */public* in the end, you should see a json with the message attribute.
 
-    https://demo-service-securityXX.apps.redhatrj-bf20.openshiftworkshop.com/public
+    https://demo-service-securityXX.apps.cluster-nbmmt.nbmmt.sandbox725.opentlc.com/public
 
 === Deploying the frontend application
 
 You will repeat the same process to deploy the frontend application. However, in the environment variables, you must insert the SERVICE_URL too.
 
-    SERVICE_URL=https://demo-service-securityXX.apps.redhatrj-bf20.openshiftworkshop.com
+    SERVICE_URL=https://demo-service-securityXX.apps.cluster-nbmmt.nbmmt.sandbox725.opentlc.com
 
 image::images/rhsso-deploy-app-06.png[]
 image::images/rhsso-deploy-app-07.png[]
@@ -299,25 +314,10 @@ If you click on Login, you will see an error message *"Client not found"*.
 
 image::images/rhsso-deploy-app-10.png[]
 
-== Setup clients on RHSSO 
-
-=== Demo Service Client
-
-* On side menu, select *Clients*. Select *Add Client* and provide:
-** Client ID: *demo-service*
-
-** Root URL: *https://demo-service-security.apps.redhatrj-bf20.openshiftworkshop.com* (Adjust with your URL)
-
-image::images/rhsso-client-setup-01.png[]
-
-** Change Access Type to *bearer-only*
-
-image::images/rhsso-client-setup-02.png[]
-
 === Demo App Client 
 
 * Client ID: *demo-app*
-* Root URL: *https://demo-app-security.apps.redhatrj-bf20.openshiftworkshop.com* (Adjust with your URL)
+* Root URL: *https://demo-app-security.apps.cluster-nbmmt.nbmmt.sandbox725.opentlc.com* (Adjust with your URL)
 
 image::images/rhsso-client-setup-03.png[]
 
