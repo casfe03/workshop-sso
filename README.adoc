@@ -28,7 +28,7 @@ Students following: 2 hours.
 
 * Login in Openshift environment using the credential delivered on class
 
-https://console-openshift-console.apps.cluster-nbmmt.nbmmt.sandbox725.opentlc.com
+ https://console-openshift-console.apps.cluster-nbmmt.nbmmt.sandbox725.opentlc.com
 
 * Click in create project on the initial page of openshift 
 
