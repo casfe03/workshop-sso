@@ -26,7 +26,7 @@ Students following: 2 hours.
 
 * Login in Openshift environment using the credential delivered on class
     
-   https://console-openshift-console.apps.cluster-nbmmt.nbmmt.sandbox725.opentlc.com
+https://console-openshift-console.apps.cluster-nbmmt.nbmmt.sandbox725.opentlc.com
 
 * Click in create project on the initial page of openshift 
 
@@ -41,15 +41,14 @@ image::images/rhsso-setup-create-project.png[]
 
 image::images/rhsso-setup-add-all-services-catalog.png[]
 
-* In the Developer Catalog search for SSO
+* In the Developer Catalog search for SSO and then click on SSO 7.4 (Ephemeral) to install a SSO 7.4 Ephemeral
 
 image::images/rhsso-setup-select-template.png[]
 
-** Click on *Next* 
+** Click on *Instantiate Template* 
 ** RH-SSO Administrator Username: *admin*
 ** RH-SSO Administrator Password: *workshop*
-** Select *Next* 
-** Choose *Do not bind at this time* option and select *Create*
+** Select *Create* 
 
 * You should see a screen similar to this:
 
