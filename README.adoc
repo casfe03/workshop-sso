@@ -1,0 +1,365 @@
+= RHSSO (aka Keycloak) Workshop
+
+== Agenda:
+
+Students following: 2 hours.
+
+. [5 min] Deploy RHSSO with PostgreSQL into Openshift
+. [5 min] Setup Realm, Roles and Users
+. [15 min] Build frontend and backend containers using Quay.io
+. [10 min] Explore Quay Security Scan
+. [10 min] Deploy frontend and backend applications into Openshift
+. [5 min] Register backend and frontend clients on RHSSO
+. [5 min] Explore application showing authentication and authorization
+. [5 min] OTP
+. [2 min] Login Screen features - Forgot Password, Sign in, etc...
+. [2 min] Templates 
+. [2 min] Social Login with Twitter
+
+== Pre-requirements
+
+* Github Account
+* Quay.io Account (Optional)
+* Access to the Openshift environment
+
+== SSO Setup 
+
+* Login in Openshift environment using the credential delivered on class
+    
+   https://console-openshift-console.apps.cluster-nbmmt.nbmmt.sandbox725.opentlc.com
+
+* Click in create project on the initial page of openshift 
+
+image::images/rhsso-setup-click-create-project.png[]
+
+* Create a project named *securityXX* (Remember to replace XX to your user number.)
+
+image::images/rhsso-setup-create-project.png[]
+
+* Once that you are in securityXX project 
+* Click Add and after on All Services Catalog
+
+image::images/rhsso-setup-add-all-services-catalog.png[]
+
+* In the Developer Catalog search for SSO
+
+image::images/rhsso-setup-select-template.png[]
+
+** Click on *Next* 
+** RH-SSO Administrator Username: *admin*
+** RH-SSO Administrator Password: *workshop*
+** Select *Next* 
+** Choose *Do not bind at this time* option and select *Create*
+
+* You should see a screen similar to this:
+
+image::images/rhsso-setup-provisioned.png[]
+
+* Access the Red Hat Single Sign-On provisioned service 
+** Click on the route URL
+
+image::images/rhsso-access-01.png[]
+
+** Click on *Administration Console* 
+
+image::images/rhsso-access-02.png[]
+
+** Fill with the credentials used before
+*** user: *admin*
+*** password: *redhat*
+
+image::images/rhsso-access-03.png[]
+
+== RHSSO Realm setup
+
+* Add a new Realm: *demo* 
+
+image::images/rhsso-realm-setup-01.png[]
+
+image::images/rhsso-realm-setup-02.png[]
+
+* Add two roles *User* and *Admin*
+** Click on *Roles* in the vertical left menu
+
+image::images/rhsso-role-setup-01.png[]
+image::images/rhsso-role-setup-02.png[]
+image::images/rhsso-role-setup-03.png[]
+image::images/rhsso-role-setup-04.png[]
+
+* Add two users, first *john* with only *user* permission, after *john* with *user* and *admin* roles.
+** Click on *Users* in the vertical left menu 
+** Click on *Add user* 
+
+image::images/rhsso-user-setup-01.png[]
+
+*** Username: *john*
+*** Email: john@acme.com
+*** First Name: john 
+*** Last Name: doe
+*** Click on Save.
+
+image::images/rhsso-user-setup-02.png[]
+
+** Select *Credentials* on the horizontal sub menu. 
+*** New password: *redhat*
+*** Mark Temporary as *OFF*
+
+image::images/rhsso-user-setup-03.png[]
+image::images/rhsso-user-setup-04.png[]
+
+** Select *Role Mappings* on the horizontal submenu. 
+*** Select *user* on Available Roles and move to *Assign Roles*
+
+image::images/rhsso-user-setup-05.png[]
+image::images/rhsso-user-setup-06.png[]
+
+After, register the user *Ramalho*, and on *Credentials* let the Temporary as *ON* and on *Roles* assign *admin* and *user* roles.
+
+image::images/rhsso-user-setup-07.png[]
+image::images/rhsso-user-setup-08.png[]
+image::images/rhsso-user-setup-09.png[]
+image::images/rhsso-user-setup-10.png[]
+
+== Application setup
+
+On this workshop, we will start using a prevalent scenario. 
+A frontend application consuming service from an API in a backend (REST) application.
+
+* Frontend - HTML5 application secured with Keycloak JavaScript adapter
+* Backend - Node.js REST service secured with Keycloak Node.js adapter
+
+The backend application exposes 3 services:
+
+* Public 
+* Secured (Requires user role)
+* Admin  (Requires admin role)
+
+To start, let's first fork the workshop repository to your git. 
+
+    https://github.com/hodrigohamalho/rhsso-workshop
+
+image::images/github-fork.png[]
+
+In the next steps, we will set up the application on Quay.io. It isn't mandatory since we could easily 
+deploy the project using Openshift S2I mechanism, but to show a different approach, we are suggesting to use 
+Quay.
+
+Another possibility should be binary deployment, but as not everyone can build containers in your machine, 
+we will explore Quay.io. Quay is responsible for forking the git repository and building the images based on a *Dockerfile*.
+
+=== Frontend application
+
+Demo-app  is a simple frontend application.
+
+* Access https://quay.io 
+** Create a new repository named *demo-app*
+
+image::images/quay-01.png[]
+
+*** Select *Public* in Repository Visibility Option
+*** Select *Link goes a Github Repository Push* 
+**** Select your user under Organization
+
+image::images/quay-02.png[]
+
+**** Select *rhsso-workshop* as your repository
+
+image::images/quay-03.png[]
+
+**** Select *Trigger for all branches and tags* as trigger option
+**** Select */demo-app/Dockerfile* as Dockerfile
+**** Select */demo-app* as Context
+
+To test if we set up everything correctly, let's trigger a build.
+
+Edit the file demo-app/index.php changing the title to:
+
+    <title>Your Name - Frontend App</title>
+
+Commit and push the changes to GitHub.
+
+After commit, go to the Quay.io panel. A build should be running.
+
+Congrats, you have a container ready to be deployed into Openshift.
+
+=== Backend application
+
+Now, we will repeat the process for the backend application.
+
+Demo-service is a NodeJS application.
+
+* Access https://quay.io 
+** Create a new repository named *demo-service*
+*** Select *Public* in Repository Visibility Option
+*** Select *Link go a Github Repository Push* 
+**** Select your user under Organization
+**** Select *rhsso-workshop* as your repository
+**** Select *Trigger for all branches and tags* as trigger option
+**** Select */demo-service/Dockerfile* as Dockerfile
+**** Select */demo-service* as Context
+
+To test if we set up everything correctly, let's trigger a build.
+
+Edit the file demo-service/app.js changing the message on line 60 to:
+
+    Public workshop
+
+Commit and push the changes to GitHub.
+
+After commit, go to the Quay.io panel. A build should be running.
+
+Congrats, you have a container ready to be deployed into Openshift.
+
+== Quay Security Scan
+
+On the demo-service repository, select *Tags*. 
+
+image::images/quay-tags-01.png[]
+
+Click on the Scan metrics to open the Dashboard.
+
+image::images/quay-from-nodejs.png[]
+
+=== Fixing Vulnerabilities 
+
+Open demo-service/Dockerfile, and change line 1 to:
+
+    FROM registry.access.redhat.com/rhoar-nodejs/nodejs-10
+
+Also, remove the WORKDIR line
+
+    WORKDIR /usr/src/app
+
+Commit and push those changes. 
+
+Look the tags session again, recheck the Scan metrics, also do you notice a significant reduction on the image size?
+
+image::images/quay-tags-01.png[]
+
+image::images/quay-nodejs-from-redhat.png[]
+
+It reinforces the quality and the compromise of Red Hat with security, and consequently, it results in stability too. 
+
+== Deploy applications into Openshift
+
+=== Deploying the backend application
+
+* Under *Add to Project* menu, select *Deploy Image*
+
+image::images/rhsso-deploy-app-01.png[]
+
+* Mark *Image Name* 
+
+    quay.io/your-user-here/demo-service
+
+image::images/rhsso-deploy-app-02.png[]
+
+* On Environment Variables add (adapt to your values)
+
+    KEYCLOAK_URL=https://sso-securityXX.apps.redhatrj-bf20.openshiftworkshop.com/auth
+
+image::images/rhsso-deploy-app-03.png[]
+
+* If everything worked fine, you should see something like it
+
+image::images/rhsso-deploy-app-04.png[]
+
+* Create a route
+** Check *Secure route* 
+
+image::images/rhsso-deploy-app-05.png[]
+
+To do a quick test, access the route created with */public* in the end, you should see a json with the message attribute.
+
+    https://demo-service-securityXX.apps.redhatrj-bf20.openshiftworkshop.com/public
+
+=== Deploying the frontend application
+
+You will repeat the same process. However, in the environment variables, you must insert the SERVICE_URL too.
+
+    SERVICE_URL=https://demo-service-securityXX.apps.redhatrj-bf20.openshiftworkshop.com
+
+image::images/rhsso-deploy-app-06.png[]
+image::images/rhsso-deploy-app-07.png[]
+image::images/rhsso-deploy-app-08.png[]
+
+To test, you can access the route, and you will see a web application. If you click on *Invoke Public* 
+you should see the message printed. 
+
+image::images/rhsso-deploy-app-09.png[]
+
+If you click on Login, you will see an error message *"Client not found"*.
+
+image::images/rhsso-deploy-app-10.png[]
+
+== Setup clients on RHSSO 
+
+=== Demo Service Client
+
+* On side menu, select *Clients*. Select *Add Client* and provide:
+** Client ID: *demo-service*
+
+** Root URL: *https://demo-service-security.apps.redhatrj-bf20.openshiftworkshop.com* (Adjust with your URL)
+
+image::images/rhsso-client-setup-01.png[]
+
+** Change Access Type to *bearer-only*
+
+image::images/rhsso-client-setup-02.png[]
+
+=== Demo App Client 
+
+* Client ID: *demo-app*
+* Root URL: *https://demo-app-security.apps.redhatrj-bf20.openshiftworkshop.com* (Adjust with your URL)
+
+image::images/rhsso-client-setup-03.png[]
+
+== Demo Navigation
+
+Quick recap, there are 3 endpoints. 
+- Public - No authentication/authorization is required. 
+- Secured - Role *user* is required.
+- Admin - Role *admin* is required. 
+
+In the previous setup we created to users:
+- *karina* with *user* role
+- *ramalho* with *user*,*admin* roles
+
+Try to invoke the Secured Endpoint, you will receive a *403 Forbidden error*
+
+image::images/rhsso-test-01.png[]
+
+It is the expected result as you are not logged in. So Login using *karina* as username and *redhat* as password.
+
+image::images/rhsso-test-02.png[]
+
+Now, you should be able to invoke de Secured Endpoint.
+
+image::images/rhsso-test-03.png[]
+
+image::images/rhsso-test-04.png[]
+
+Try to invoke the Admin endpoint, you will receive a *403 Forbidden error*. So in this case you could add the permission *admin* to Karina user or log in with *ramalho* user. We will procced loggin with *ramalho* user.
+
+image::images/rhsso-test-05.png[]
+
+Login with *ramalho* user.
+
+image::images/rhsso-test-06.png[]
+
+Notice that as we marked to change password during the user process creation, now it is asking to update the password as expected.
+
+image::images/rhsso-test-07.png[]
+
+Now, logged in as *ramalho* user let's try to invoke the Admin endpoint.
+
+image::images/rhsso-test-08.png[]
+
+The request works as expected because this user as the admin permission.
+
+image::images/rhsso-test-09.png[]
+
+Click on account and navigate through the all options from the menu on left side.
+
+image::images/rhsso-test-10.png[]
+
