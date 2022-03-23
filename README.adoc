@@ -25,7 +25,7 @@ Students following: 1 hour.
 
 * Login in Openshift environment using the credential delivered on class
 
- https://console-openshift-console.apps.cluster-nbmmt.nbmmt.sandbox725.opentlc.com
+ https://console-openshift-console.apps.cluster-ftnxt.ftnxt.sandbox5.opentlc.com
 
 * Click in create project on the initial page of openshift 
 
@@ -125,7 +125,7 @@ image::images/rhsso-user-setup-10.png[]
 * On side menu, select *Clients*. Select *Add Client* and provide:
 ** Client ID: *demo-service*
 
-** Root URL: *https://demo-service-security.apps.cluster-nbmmt.nbmmt.sandbox725.opentlc.com* (Adjust with your URL)
+** Root URL: *https://demo-service-security.apps.cluster-ftnxt.ftnxt.sandbox5.opentlc.com* (Adjust with your URL)
 
 image::images/rhsso-client-setup-01.png[]
 
@@ -136,7 +136,7 @@ image::images/rhsso-client-setup-02.png[]
 === Demo App Client 
 
 * Client ID: *demo-app*
-* Root URL: *https://demo-app-security.apps.cluster-nbmmt.nbmmt.sandbox725.opentlc.com* (Adjust with your URL)
+* Root URL: *https://demo-app-security.apps.cluster-ftnxt.ftnxt.sandbox5.opentlc.com* (Adjust with your URL)
 
 image::images/rhsso-client-setup-03.png[]
 
@@ -278,7 +278,7 @@ image::images/rhsso-deploy-app-03-1.png[]
 
 * In your deployment On Environment Variables add (adapt to your values)
     
-    KEYCLOAK_URL=https://sso-securityXX.apps.cluster-nbmmt.nbmmt.sandbox725.opentlc.com/auth
+    KEYCLOAK_URL=https://sso-securityXX.apps.cluster-ftnxt.ftnxt.sandbox5.opentlc.com/auth
 
 image::images/rhsso-deploy-app-03.png[]
 
@@ -297,13 +297,13 @@ image::images/rhsso-deploy-app-05.png[]
 
 To do a quick test, access the route created with */public* in the end, you should see a json with the message attribute.
 
-    https://demo-service-securityXX.apps.cluster-nbmmt.nbmmt.sandbox725.opentlc.com/public
+    https://demo-service-securityXX.apps.cluster-ftnxt.ftnxt.sandbox5.opentlc.com/public
 
 === Deploying the frontend application
 
 You will repeat the same process to deploy the frontend application. However, in the environment variables, you must insert the SERVICE_URL too.
 
-    SERVICE_URL=https://demo-service-securityXX.apps.cluster-nbmmt.nbmmt.sandbox725.opentlc.com
+    SERVICE_URL=https://demo-service-securityXX.apps.cluster-ftnxt.ftnxt.sandbox5.opentlc.com
 
 image::images/rhsso-deploy-app-06.png[]
 image::images/rhsso-deploy-app-07.png[]
