@@ -90,7 +90,7 @@ image::images/rhsso-role-setup-04.png[]
 
 image::images/rhsso-user-setup-01.png[]
 
-*** Username: *Mary*
+*** Username: *mary*
 *** Email: mary@acme.com
 *** First Name: Mary 
 *** Last Name: Doe
